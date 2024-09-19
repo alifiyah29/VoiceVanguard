@@ -1,18 +1,21 @@
 import React, { useContext } from "react";
-import { speakerList } from "../../../speakersData";
 import SpeakerMenu from "./SpeakerMenu";
 import SpeakersList from "./SpeakersList";
-import { ThemeContext } from "../../App";
+import { ThemeContext } from "../context/ThemeContext";
+import { SpeakersDataProvider } from "../context/SpeakersDataContext";
 
 function Speakers() {
   const { darkTheme } = useContext(ThemeContext);
 
   return (
     <div className={darkTheme ? "theme-dark" : "theme-light"}>
+      
       <SpeakerMenu />
       <div className="container">
         <div className="row g-4">
-          <SpeakersList speakerList={speakerList} />
+          <SpeakersDataProvider>
+            <SpeakersList />
+          </SpeakersDataProvider>
         </div>
       </div>
     </div>
